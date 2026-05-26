@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> primeFactors(int n)
+{
+    vector<int> list;
+
+    for(int i = 2; i * i <= n; i++)
+    {
+        // i is a factor
+        if(n % i == 0)
+        {
+            list.push_back(i);
+
+            // remove all powers of i
+            while(n % i == 0)
+            {
+                n = n / i;
+            }
+        }
+    }
+
+    // if n is still greater than 1,
+    // then n itself is prime
+    if(n != 1)
+    {
+        list.push_back(n);
+    }
+
+    return list;
+}
+
+int main()
+{
+    int n = 60;
+
+    vector<int> ans = primeFactors(n);
+
+    for(int x : ans)
+    {
+        cout << x << " ";
+    }
+}
